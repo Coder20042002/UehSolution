@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Email.UEH;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Ueh.Data.Configuration
         public void Configure(EntityTypeBuilder<EmailInfo> builder)
         {
             builder.ToTable("EmailInfos");
-            builder.HasNoKey();
+            builder.HasKey(x => x.From);
         }
     }
 

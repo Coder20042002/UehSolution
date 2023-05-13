@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Email.UEH;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ueh.Data.EF
+namespace Ueh.Data.Entities
 {
     public class EmailInfo
     {
@@ -14,8 +15,7 @@ namespace Ueh.Data.EF
         public string Cc { get; set; }
         public string Bcc { get; set; }
         public string Body { get; set; }
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
+        public List<AttachFile> Files { get; set; }
         public string IsBodyHtml { get; set; } = bool.TrueString;
     }
 }

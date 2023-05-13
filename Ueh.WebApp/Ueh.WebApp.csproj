@@ -6,4 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="lib.ueh" Version="1.0.5" />
+    <PackageReference Include="ServiceStack" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="lib.ueh45">
+      <HintPath>..\..\..\PMQL_UEH\Lib\lib.ueh45.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

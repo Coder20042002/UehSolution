@@ -6,18 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ueh.Data.EF;
+using Ueh.Data.Entities;
 
 namespace Ueh.Data.Configuration
 {
-    public class StudentConfiguration : IEntityTypeConfiguration<RSStudent>
+    public class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
-        public void Configure(EntityTypeBuilder<RSStudent> builder)
+        public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder.ToTable("RSStudents");
+            builder.ToTable("Students");
             builder.HasKey(x => x.mssv);
-            //builder.Property(x => x.email).IsRequired();
-            //builder.Property(x => x.password).IsRequired();
-            //builder.Property(x => x.email).IsRequired();
+
 
 
         }
