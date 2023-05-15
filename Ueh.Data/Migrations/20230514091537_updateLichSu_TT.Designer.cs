@@ -12,8 +12,8 @@ using Ueh.Data.EF;
 namespace Ueh.Data.Migrations
 {
     [DbContext(typeof(UEH_DbContext))]
-    [Migration("20230513095027_db")]
-    partial class db
+    [Migration("20230514091537_updateLichSu_TT")]
+    partial class updateLichSu_TT
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,44 @@ namespace Ueh.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Ueh.Data.Entities.Dangkycuoi", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("madot")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("magv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("maloai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("mssv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("madot");
+
+                    b.HasIndex("magv");
+
+                    b.HasIndex("maloai");
+
+                    b.HasIndex("mssv");
+
+                    b.ToTable("Dangkycuois", (string)null);
+                });
 
             modelBuilder.Entity("Ueh.Data.Entities.Dangkytruoc", b =>
                 {
@@ -120,6 +158,50 @@ namespace Ueh.Data.Migrations
                     b.ToTable("Khoas", (string)null);
                 });
 
+            modelBuilder.Entity("Ueh.Data.Entities.Lichsu", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Dangkycuoiid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Giangvienmagv")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("NoiDung")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Studentmssv")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("ThoiGian")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("madk")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("magv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("mssv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Dangkycuoiid");
+
+                    b.HasIndex("Giangvienmagv");
+
+                    b.HasIndex("Studentmssv");
+
+                    b.ToTable("Lichsus", (string)null);
+                });
+
             modelBuilder.Entity("Ueh.Data.Entities.Loai", b =>
                 {
                     b.Property<string>("maloai")
@@ -197,6 +279,45 @@ namespace Ueh.Data.Migrations
                     b.ToTable("Students", (string)null);
                 });
 
+            modelBuilder.Entity("Ueh.Data.Entities.Dangkycuoi", b =>
+                {
+                    b.HasOne("Ueh.Data.Entities.Dot", "Dot")
+                        .WithMany("dangkycuoiList")
+                        .HasForeignKey("madot")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_DangKyCuoi_Dot");
+
+                    b.HasOne("Ueh.Data.Entities.Giangvien", "Giangvien")
+                        .WithMany("dangkycuoi")
+                        .HasForeignKey("magv")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_DangKyCuoi_GiangVien");
+
+                    b.HasOne("Ueh.Data.Entities.Loai", "Loai")
+                        .WithMany("dangkycuois")
+                        .HasForeignKey("maloai")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_DangKyCuoi_Loai");
+
+                    b.HasOne("Ueh.Data.Entities.Student", "Student")
+                        .WithMany("dangkycuoi")
+                        .HasForeignKey("mssv")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_DangKyCuoi_Student");
+
+                    b.Navigation("Dot");
+
+                    b.Navigation("Giangvien");
+
+                    b.Navigation("Loai");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Ueh.Data.Entities.Dangkytruoc", b =>
                 {
                     b.HasOne("Ueh.Data.Entities.Dot", "Dot")
@@ -248,6 +369,21 @@ namespace Ueh.Data.Migrations
                     b.Navigation("khoa");
                 });
 
+            modelBuilder.Entity("Ueh.Data.Entities.Lichsu", b =>
+                {
+                    b.HasOne("Ueh.Data.Entities.Dangkycuoi", null)
+                        .WithMany("lichsus")
+                        .HasForeignKey("Dangkycuoiid");
+
+                    b.HasOne("Ueh.Data.Entities.Giangvien", null)
+                        .WithMany("lichsus")
+                        .HasForeignKey("Giangvienmagv");
+
+                    b.HasOne("Ueh.Data.Entities.Student", null)
+                        .WithMany("lichsus")
+                        .HasForeignKey("Studentmssv");
+                });
+
             modelBuilder.Entity("Ueh.Data.Entities.Student", b =>
                 {
                     b.HasOne("Ueh.Data.Entities.Khoa", null)
@@ -255,14 +391,25 @@ namespace Ueh.Data.Migrations
                         .HasForeignKey("Khoamakhoa");
                 });
 
+            modelBuilder.Entity("Ueh.Data.Entities.Dangkycuoi", b =>
+                {
+                    b.Navigation("lichsus");
+                });
+
             modelBuilder.Entity("Ueh.Data.Entities.Dot", b =>
                 {
+                    b.Navigation("dangkycuoiList");
+
                     b.Navigation("dangkytruocsList");
                 });
 
             modelBuilder.Entity("Ueh.Data.Entities.Giangvien", b =>
                 {
+                    b.Navigation("dangkycuoi");
+
                     b.Navigation("dangkytruocs");
+
+                    b.Navigation("lichsus");
                 });
 
             modelBuilder.Entity("Ueh.Data.Entities.Khoa", b =>
@@ -274,12 +421,18 @@ namespace Ueh.Data.Migrations
 
             modelBuilder.Entity("Ueh.Data.Entities.Loai", b =>
                 {
+                    b.Navigation("dangkycuois");
+
                     b.Navigation("dangkytruocs");
                 });
 
             modelBuilder.Entity("Ueh.Data.Entities.Student", b =>
                 {
+                    b.Navigation("dangkycuoi");
+
                     b.Navigation("dangkytruoc");
+
+                    b.Navigation("lichsus");
                 });
 #pragma warning restore 612, 618
         }

@@ -23,8 +23,8 @@ namespace Ueh.Data.Entities
         public string HDT { get; set; }
 
         public List<Dangkytruoc> dangkytruoc { get; set; }
-        //public List<Dangkycuoi> dangkycuoi { get; set; }
-        //public List<Lichsu> lichsus { get; set; }
+        public List<Dangkycuoi> dangkycuoi { get; set; }
+        public List<Lichsu> lichsus { get; set; }
         //public List<Thongtindangky> thongtindangkies { get; set; }
     }
 

@@ -10,18 +10,17 @@ using Ueh.Data.Entities;
 
 namespace Ueh.Data.Configuration
 {
-    public class LichSuConfiuration : IEntityTypeConfiguration<Lichsu>
+    public class LichSuConfiguration : IEntityTypeConfiguration<Lichsu>
     {
         public void Configure(EntityTypeBuilder<Lichsu> builder)
         {
             builder.ToTable("Lichsus");
-            builder.HasKey(x => x.MaDk);
-            builder.Property(x => x.NoiDung).IsRequired();
+            builder.HasKey(ls => ls.Id);
+            builder.Property(ls => ls.NoiDung).IsRequired();
 
-            builder.HasOne(ls => ls.Dangkycuoi)
-                .WithMany(dk => dk.lichsus)
-                .HasForeignKey(ls => ls.MaDk)
-                .HasConstraintName("FK_LíchU_DangKy");
+
+
+
 
 
         }

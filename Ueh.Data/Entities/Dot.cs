@@ -15,7 +15,7 @@ namespace Ueh.Data.Entities
         public bool status { get; set; }
 
         public List<Dangkytruoc> dangkytruocsList { get; set; }
-        //public List<Dangkycuoi> dangkycuoiList { get; set; }
+        public List<Dangkycuoi> dangkycuoiList { get; set; }
 
     }
 }
