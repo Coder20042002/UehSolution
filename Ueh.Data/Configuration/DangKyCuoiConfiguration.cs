@@ -30,7 +30,7 @@ namespace Ueh.Data.Configuration
 
 
             builder.HasOne(x => x.Dot)
-                   .WithMany(x => x.dangkycuoiList)
+                   .WithMany(x => x.dangkycuois)
                    .HasForeignKey(x => x.madot)
                    .HasConstraintName("FK_DangKyCuoi_Dot");
 

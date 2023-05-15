@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Ueh.Data.EF;
 
 namespace Ueh.Admin.Controllers
@@ -17,7 +18,7 @@ namespace Ueh.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-
+            return null;
         }
     }
 }
