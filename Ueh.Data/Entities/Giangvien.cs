@@ -15,9 +15,10 @@ namespace Ueh.Data.Entities
         public Khoa khoa { get; set; }
         public List<Dangkytruoc> dangkytruocs { get; set; }
 
-        //public List<Lichsu> lichsus { get; set; }
+        public List<Dangkycuoi> dangkycuoi { get; set; }
+
+        public List<Lichsu> lichsus { get; set; }
         //public List<Thongtindangky> thongtindangkies { get; set; }
-        //public List<Dangkycuoi> dangkycuoi { get; set; }
 
 
     }

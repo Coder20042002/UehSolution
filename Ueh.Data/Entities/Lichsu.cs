@@ -12,8 +12,10 @@ namespace Ueh.Data.Entities
         public string NoiDung { get; set; }
         public DateTime ThoiGian { get; set; }
 
-        public Guid MaDk { get; set; }
-        public Dangkycuoi Dangkycuoi { get; set; }
+        public Guid madk { get; set; }
+        public string mssv { get; set; }
+        public string magv { get; set; }
+
 
     }
 

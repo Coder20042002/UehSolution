@@ -23,7 +23,7 @@ namespace Ueh.Data.Entities
         public string maloai { get; set; }
         public Loai Loai { get; set; }
 
-        public Thongtindangky thongtindangky { get; set; }
+        //public Thongtindangky thongtindangky { get; set; }
         public List<Lichsu> lichsus { get; set; }
 
 

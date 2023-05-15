@@ -21,8 +21,8 @@ namespace Ueh.Data.EF
             modelBuilder.ApplyConfiguration(new KhoaConfiguration());
             modelBuilder.ApplyConfiguration(new DangKyTruocConfiguration());
 
-            //modelBuilder.ApplyConfiguration(new LichSuConfiuration());
-            //modelBuilder.ApplyConfiguration(new DangKyCuoiConfiguration());
+            modelBuilder.ApplyConfiguration(new LichSuConfiguration());
+            modelBuilder.ApplyConfiguration(new DangKyCuoiConfiguration());
             //modelBuilder.ApplyConfiguration(new ThongTinDangKyConfiguration());
             //modelBuilder.ApplyConfiguration(new EmailInfoConfiguration());
 
@@ -36,9 +36,10 @@ namespace Ueh.Data.EF
         public DbSet<Loai> Loais { get; set; }
         public DbSet<Khoa> Khoas { get; set; }
         public DbSet<Dangkytruoc> Dangkytruocs { get; set; }
+        public DbSet<Dangkycuoi> Dangkycuois { get; set; }
 
-        //public DbSet<Lichsu> Lichsus { get; set; }
-        //public DbSet<Dangkycuoi> Dangkycuois { get; set; }
+        public DbSet<Lichsu> Lichsus { get; set; }
+
         //public DbSet<Thongtindangky> Thongtindangkies { get; set; }
         //public DbSet<EmailInfo> EmailInfos { get; set; }
 

@@ -11,6 +11,6 @@ namespace Ueh.Data.Entities
         public string maloai { get; set; }
         public string tenloaij { get; set; }
         public List<Dangkytruoc> dangkytruocs { get; set; }
-        //public List<Dangkycuoi> dangkycuois { get; set; }
+        public List<Dangkycuoi> dangkycuois { get; set; }
     }
 }
